@@ -2,7 +2,7 @@
 replicaCount: 3
 
 image:
-  repository: ghcr.io/yourusername/janeonthegame-frontend
+  repository: ghcr.io/janeonthegame/janeonthegame-frontend
   pullPolicy: IfNotPresent
   tag: "latest"
 

@@ -3,7 +3,7 @@
 replicaCount: 3
 
 image:
-  repository: ghcr.io/yourusername/janeonthegame-api
+  repository: ghcr.io/janeonthegame/janeonthegame-api
   tag: "latest"
   pullPolicy: Always
 
@@ -40,15 +40,7 @@ ingress:
       hosts:
         - api.janeonthegame.com
 
-env:
-  - name: NODE_ENV
-    value: "production"
-  - name: PORT
-    value: "3000"
-  - name: TZ
-    value: "Africa/Nairobi"
-  - name: LOG_LEVEL
-    value: "info"
+env: []
 
 envFrom:
   - secretRef:

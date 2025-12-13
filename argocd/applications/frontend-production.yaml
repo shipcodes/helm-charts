@@ -9,7 +9,7 @@ spec:
   project: janeonthegame
   
   source:
-    repoURL: https://github.com/yourusername/janeonthegame-k8s.git
+    repoURL: https://github.com/janeonthegame/janeonthegame-k8s.git
     targetRevision: main
     path: charts/frontend
     helm:

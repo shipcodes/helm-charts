@@ -19,6 +19,10 @@ kubectl create namespace janeonthegame-prod
 # Backend secrets
 kubectl create secret generic backend-secrets \
   --namespace=janeonthegame-prod \
+  --from-literal=NODE_ENV="production" \
+  --from-literal=PORT="3000" \
+  --from-literal=TZ="Africa/Nairobi" \
+  --from-literal=LOG_LEVEL="info" \
   --from-literal=DATABASE_URL="postgresql://user:password@hostname:5432/janeonthegame" \
   --from-literal=JWT_SECRET="your-super-secret-jwt-key-change-this" \
   --from-literal=PAYSTACK_SECRET_KEY="sk_live_your_paystack_key" \
@@ -33,27 +37,9 @@ kubectl create secret generic backend-secrets \
 # Frontend secrets
 kubectl create secret generic frontend-secrets \
   --namespace=janeonthegame-prod \
+  --from-literal=NODE_ENV="production" \
+  --from-literal=PORT="3000" \
   --from-literal=NEXT_PUBLIC_API_URL="https://api.janeonthegame.com/graphql"
-```
-
-### Staging Secrets
-
-```bash
-# Create namespace
-kubectl create namespace janeonthegame-staging
-
-# Backend secrets
-kubectl create secret generic backend-staging-secrets \
-  --namespace=janeonthegame-staging \
-  --from-literal=DATABASE_URL="postgresql://user:password@hostname:5432/janeonthegame_staging" \
-  --from-literal=JWT_SECRET="staging-jwt-secret" \
-  --from-literal=PAYSTACK_SECRET_KEY="sk_test_your_paystack_test_key" \
-  --from-literal=FOOTBALL_DATA_ORG_KEY="your_api_key_here"
-
-# Frontend secrets
-kubectl create secret generic frontend-staging-secrets \
-  --namespace=janeonthegame-staging \
-  --from-literal=NEXT_PUBLIC_API_URL="https://api-staging.janeonthegame.com/graphql"
 ```
 
 ## Step 2: Configure GitHub Container Registry
@@ -63,15 +49,7 @@ kubectl create secret generic frontend-staging-secrets \
 kubectl create secret docker-registry ghcr-secret \
   --namespace=janeonthegame-prod \
   --docker-server=ghcr.io \
-  --docker-username=YOUR_GITHUB_USERNAME \
-  --docker-password=YOUR_GITHUB_PAT \
-  --docker-email=YOUR_EMAIL
-
-# Repeat for staging
-kubectl create secret docker-registry ghcr-secret \
-  --namespace=janeonthegame-staging \
-  --docker-server=ghcr.io \
-  --docker-username=YOUR_GITHUB_USERNAME \
+  --docker-username=janeonthegame \
   --docker-password=YOUR_GITHUB_PAT \
   --docker-email=YOUR_EMAIL
 ```
@@ -85,10 +63,6 @@ kubectl apply -f argocd/projects/janeonthegame-project.yaml
 # Deploy production applications
 kubectl apply -f argocd/applications/backend-production.yaml
 kubectl apply -f argocd/applications/frontend-production.yaml
-
-# Deploy staging applications (optional)
-kubectl apply -f argocd/applications/backend-staging.yaml
-kubectl apply -f argocd/applications/frontend-staging.yaml
 ```
 
 ## Step 4: Verify Deployment

@@ -7,16 +7,12 @@ spec:
   description: Jane on the Game Betting Platform
   
   sourceRepos:
-    - 'https://github.com/yourusername/janeonthegame-k8s.git'
-    - 'https://github.com/yourusername/janeonthegame-api.git'
-    - 'https://github.com/yourusername/janeonthegame-frontend.git'
+    - 'https://github.com/janeonthegame/janeonthegame-k8s.git'
+    - 'https://github.com/janeonthegame/janeonthegame-api.git'
+    - 'https://github.com/janeonthegame/janeonthegame-frontend.git'
   
   destinations:
     - namespace: janeonthegame-prod
-      server: https://kubernetes.default.svc
-    - namespace: janeonthegame-staging
-      server: https://kubernetes.default.svc
-    - namespace: janeonthegame-dev
       server: https://kubernetes.default.svc
   
   clusterResourceWhitelist:
