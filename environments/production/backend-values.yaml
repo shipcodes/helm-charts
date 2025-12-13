@@ -48,7 +48,8 @@ envFrom:
 
 postgresql:
   enabled: false  # Use external managed database in production
-env:
+
+secrets:
   NODE_ENV: "production"
   PORT: "3000"
   DATABASE_URL: "REPLACE_WITH_YOUR_DATABASE_URL"

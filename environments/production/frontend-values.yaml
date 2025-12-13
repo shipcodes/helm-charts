@@ -46,10 +46,12 @@ ingress:
         - janeonthegame.com
         - www.janeonthegame.com
 
-env:
+secrets:
   NODE_ENV: "production"
   PORT: "3000"
   NEXT_PUBLIC_API_URL: "https://api.janeonthegame.com/graphql"
+
+env: []
 
 envFrom:
   - secretRef:
