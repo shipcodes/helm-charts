@@ -12,7 +12,7 @@ spec:
     - 'https://github.com/janeonthegame/janeonthegame-frontend.git'
   
   destinations:
-    - namespace: janeonthegame-prod
+    - namespace: default
       server: https://kubernetes.default.svc
   
   clusterResourceWhitelist:
