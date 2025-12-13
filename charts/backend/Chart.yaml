@@ -1,0 +1,14 @@
+apiVersion: v2
+name: backend
+description: Jane on the Game - Backend API (NestJS)
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - nestjs
+  - graphql
+  - betting
+  - football
+maintainers:
+  - name: Jane on the Game Team
+home: https://github.com/yourusername/janeonthegame-api

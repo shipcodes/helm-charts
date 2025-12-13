@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: janeonthegame
+  namespace: argocd
+spec:
+  description: Jane on the Game Betting Platform
+  
+  sourceRepos:
+    - 'https://github.com/yourusername/janeonthegame-k8s.git'
+    - 'https://github.com/yourusername/janeonthegame-api.git'
+    - 'https://github.com/yourusername/janeonthegame-frontend.git'
+  
+  destinations:
+    - namespace: janeonthegame-prod
+      server: https://kubernetes.default.svc
+    - namespace: janeonthegame-staging
+      server: https://kubernetes.default.svc
+    - namespace: janeonthegame-dev
+      server: https://kubernetes.default.svc
+  
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+  
+  namespaceResourceWhitelist:
+    - group: ''
+      kind: '*'
+    - group: 'apps'
+      kind: '*'
+    - group: 'batch'
+      kind: '*'
+    - group: 'networking.k8s.io'
+      kind: '*'
+    - group: 'autoscaling'
+      kind: '*'
+  
+  orphanedResources:
+    warn: true
