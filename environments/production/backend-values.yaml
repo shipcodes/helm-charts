@@ -1,24 +1,24 @@
 # Production Environment - Backend Values
 
-replicaCount: 3
+replicaCount: 1
 
 image:
-  repository: ghcr.io/janeonthegame/janeonthegame-api
+  repository: ghcr.io/muthuri-dev/janeonthegame-api
   tag: "latest"
   pullPolicy: Always
 
 resources:
   limits:
-    cpu: 2000m
-    memory: 2Gi
+    cpu: 500m
+    memory: 512Mi
   requests:
-    cpu: 1000m
-    memory: 1Gi
+    cpu: 200m
+    memory: 256Mi
 
 autoscaling:
-  enabled: true
-  minReplicas: 3
-  maxReplicas: 15
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
   targetCPUUtilizationPercentage: 70
   targetMemoryUtilizationPercentage: 75
 
